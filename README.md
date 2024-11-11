@@ -1,3 +1,28 @@
+# 配置
+## 查看活跃的连接
+nmcli con show --active
+## 保存vpn密码
+vi /etc/NetworkManager/system-connections/xianggang.nmconnection
+```
+[vpn]
+gateway=XXX.XXX.XXX.XXX
+ipsec-enabled=yes
+ipsec-esp=aes128-sha1
+ipsec-ike=aes128-sha1-modp2048
+machine-auth-type=psk
+password-flags=0
+user=vpnuser
+user-auth-type=password
+service-type=org.freedesktop.NetworkManager.l2tp
+
+[vpn-secrets]
+ipsec-psk=***
+password=***
+
+[ipv4]
+method=auto
+route1=10.1.226.3/32,192.168.42.1
+```
 # vpn-auto-reconnect.sh
 
 A simple bash script for autoreconnect to OpenVPN via NetworkManager command-line (nmcli).
